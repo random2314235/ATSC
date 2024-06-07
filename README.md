@@ -34,4 +34,4 @@ python train_student.py --path_t ./save/teachers/models/resnet32x4_vanilla/resne
 python train_student.py --path-t './save/teachers/models/ResNet50_vanilla/ResNet50_best.pth' --batch_size 64 --epochs 120 --dataset imagenet --model_s ResNet18 --distill atsc -c 0 -d 0 -b 1 -w 10 -f 2 --learning_rate 0.01 --lr_decay_epochs 30,60,90 --weight_decay 1e-4 --num_workers 32 --gpu_id 0,1,2,3 --dist-url tcp://127.0.0.1:23444 --multiprocessing-distributed --dali gpu --trial 0 
 ```
 
-Additional scripts for various knowledge distillation (KD) approaches are available in the ./scripts directory within the [SimKD]https://github.com/DefangChen/SimKD).
+Additional scripts for the other KD approaches are available in the ./scripts directory within the [SimKD repository](https://github.com/DefangChen/SimKD).
