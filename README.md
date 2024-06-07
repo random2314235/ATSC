@@ -14,12 +14,24 @@ This repository provides several representative knowledge distillation approache
   - [x] [SimKD](https://arxiv.org/abs/2203.14001) [CVPR-2022] 
   - [x] ATSC
 
-This repository is built on a open-source benchmark and previous repositories (SemCKD [AAAI-2021] and SimKD [CVPR-2022]).
+This repository is built on a open-source benchmark and previous repositories (SemCKD and SimKD).
 
-Pretrain teacher model
+## Pretrain teacher model
+```bash
 # CIFAR-100
 python train_teacher.py --batch_size 64 --epochs 240 --dataset cifar100 --model resnet32x4 --learning_rate 0.05 --lr_decay_epochs 150,180,210 --weight_decay 5e-4 --trial 0 --gpu_id 0
 
 # ImageNet
 python train_teacher.py --batch_size 256 --epochs 120 --dataset imagenet --model ResNet18 --learning_rate 0.1 --lr_decay_epochs 30,60,90 --weight_decay 1e-4 --num_workers 32 --gpu_id 0,1,2,3 --dist-url tcp://127.0.0.1:23333 --multiprocessing-distributed --dali gpu --trial 0
+```
 
+## Train student model with ATSC
+```bash
+# CIFAR-100
+python train_student.py --path_t ./save/teachers/models/resnet32x4_vanilla/resnet32x4_best.pth --distill atsc --model_s resnet8x4 -c 0 -d 0 -b 1 -w 1 -f 2 --trial 0
+
+# ImageNet
+python train_student.py --path-t './save/teachers/models/ResNet50_vanilla/ResNet50_best.pth' --batch_size 64 --epochs 120 --dataset imagenet --model_s ResNet18 --distill atsc -c 0 -d 0 -b 1 -w 10 -f 2 --learning_rate 0.01 --lr_decay_epochs 30,60,90 --weight_decay 1e-4 --num_workers 32 --gpu_id 0,1,2,3 --dist-url tcp://127.0.0.1:23444 --multiprocessing-distributed --dali gpu --trial 0 
+```
+
+More scripts for the other KD approaches are provided in `./scripts` in [SimKD]([https://github.com/DefangChen/SimKD]).
