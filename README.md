@@ -1,4 +1,4 @@
-This is code page for paper "Adaptive Teaching with Shared Classifier for Knowledge Distillation" submitted to NeurIPS 2024.
+This is code page for paper "Adaptive Teaching with Shared Classifier for Knowledge Distillation" submitted to Neurocomputing.
 
 This repository provides several representative knowledge distillation approaches on standard image classification tasks (e.g., CIFAR100, ImageNet).
 
